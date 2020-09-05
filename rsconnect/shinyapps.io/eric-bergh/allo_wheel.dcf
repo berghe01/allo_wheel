@@ -1,0 +1,13 @@
+name: allo_wheel
+title: allo_wheel
+username:
+account: eric-bergh
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 2675080
+bundleId: 3595812
+url: https://eric-bergh.shinyapps.io/allo_wheel/
+when: 1599296645.51428
+asMultiple: FALSE
+asStatic: FALSE
+ignoredFiles: README.html|README.md

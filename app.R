@@ -15,7 +15,12 @@ library(magrittr)
 library(stringr)
 
 
-df <- read.csv("data.csv", header = TRUE, sep = ",")
+#df <- read.csv("data.csv", header = TRUE, sep = ",")
+
+df <- read_sheet("https://docs.google.com/spreadsheets/d/1vuZXmAeFlRAHJR6yp3s2mP0NpG2l-EsXmteVzjOLtOU/edit?usp=sharing")
+df$values <- sapply(df$values, function(x) eval(parse(text = x)))
+df$values <- as.numeric(df$values)
+df <- data.frame(df)
 
 ui <- fluidPage(
   
@@ -122,7 +127,7 @@ ui <- fluidPage(
                                   column(6, style = "height:80px;", 
                                          
                                          selectInput(width = NULL, inputId = "select_antigen", label = h5(id = "selectinput",  "Click on allo-wheels or search antigen family:"),
-                                                     choices =  c("select antigen" = " ", setNames(nm = df$ids)),
+                                                     choices =  c("select antigen" = " ", setNames(nm = df$newids)),
                                                      selectize = TRUE,
                                                      selected = "mytext"
                                          )
@@ -214,7 +219,7 @@ server <- function(input, output, session) {
     
     df %>%
       filter(sunburst_wheel == 1, 
-             ids == input$select_antigen) %>%
+             newids == input$select_antigen) %>%
       select(selector) %>%
       as.character('['(1))
     
@@ -224,7 +229,7 @@ server <- function(input, output, session) {
     
     df %>%
       filter(sunburst_wheel == 1, 
-             ids == input$select_antigen) %>%
+             newids == input$select_antigen) %>%
       select(selector) %>%
       as.character('['(1))
     
@@ -240,7 +245,6 @@ server <- function(input, output, session) {
             parents = ~parents,
             values = ~values,
             level = antigenselector1(),
-            #level = input$select_antigen,
             branchvalues = 'total',
             type = 'sunburst',
             name = "",
@@ -311,6 +315,7 @@ server <- function(input, output, session) {
         select(titles, link, node, element, risk)
     }
   })
+  
   
   
   output$mytext <- renderText({
