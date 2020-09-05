@@ -17,13 +17,6 @@ library(stringr)
 
 df <- read.csv("data.csv", header = TRUE, sep = ",")
 
-# df <- read_sheet("https://docs.google.com/spreadsheets/d/1vuZXmAeFlRAHJR6yp3s2mP0NpG2l-EsXmteVzjOLtOU/edit?usp=sharing")
-# #
-# df$values <- sapply(df$values, function(x) eval(parse(text = x)))
-# df$values <- as.numeric(df$values)
-# df <- data.frame(df)
-write.csv(df, "data.csv", row.names = FALSE)
-
 ui <- fluidPage(
   
   useShinyjs(),
@@ -321,13 +314,9 @@ server <- function(input, output, session) {
   
   
   output$mytext <- renderText({
-    #  if (!is.na(newdf()[1,5])){
     
     paste("<em style = 'font-size:15px;'>Risk for HDFN:", as.character(newdf()[1,5]), "</em>", sep = " ")
-    
-    # } else {
-    #   ""
-    # }
+
     
   })
   
@@ -377,9 +366,6 @@ server <- function(input, output, session) {
       
     } else if(!is.null(hoverData()[3]) & (newdf()$titles == "severe HDFN" | newdf()$titles == "moderate HDFN" | newdf()$titles == "mild HDFN" | newdf()$titles == "no HDFN")) {
       
-      # newdf <- df %>%
-      #   filter(ids_lookup == hoverData()[3]) %>%
-      #   select(titles, link, node)
       
       tibble(a = newdf()[1,1],
              b = newdf()[1,2]) %>%
@@ -418,6 +404,4 @@ server <- function(input, output, session) {
   
 }
 
-
-# Run the application 
 shinyApp(ui = ui, server = server)
