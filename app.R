@@ -14,13 +14,8 @@ library(purrr)
 library(magrittr)
 library(stringr)
 
-
-#df <- read.csv("data.csv", header = TRUE, sep = ",")
-
-df <- read_sheet("https://docs.google.com/spreadsheets/d/1vuZXmAeFlRAHJR6yp3s2mP0NpG2l-EsXmteVzjOLtOU/edit?usp=sharing")
-df$values <- sapply(df$values, function(x) eval(parse(text = x)))
-df$values <- as.numeric(df$values)
-df <- data.frame(df)
+df <- read.csv("data.csv", header = TRUE, sep = ",")
+newids <- na.omit(df$newids)
 
 ui <- fluidPage(
   
@@ -127,7 +122,7 @@ ui <- fluidPage(
                                   column(6, style = "height:80px;", 
                                          
                                          selectInput(width = NULL, inputId = "select_antigen", label = h5(id = "selectinput",  "Click on allo-wheels or search antigen family:"),
-                                                     choices =  c("select antigen" = " ", setNames(nm = df$newids)),
+                                                     choices =  c("select antigen" = " ", setNames(nm = newids)),
                                                      selectize = TRUE,
                                                      selected = "mytext"
                                          )
@@ -190,7 +185,7 @@ ui <- fluidPage(
                                                 web framework. Please do not hesitate to contact ",
                                             tags$a(href = "https://twitter.com/ericberghMD", "@ericberghMD "),
                                             "with any questions/suggestions. The code for this app can be found ",
-                                            tags$a(href = "https://github.com/berghe01/smfm_tweets/blob/master/app.R", "here. "), 
+                                            tags$a(href = "https://github.com/berghe01/allo_wheel", "here. "), 
                                             br(), 
                                             br(),
                                             'The "allo"-wheel app draws heavily upon the following table which may be found in UpToDate, 
