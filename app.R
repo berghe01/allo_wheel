@@ -194,8 +194,8 @@ ui <- fluidPage(
                                             permission was requested prior to publication on the web.',
                                             br(), 
                                             br(),
-                                            "<i>Special thanks to <b>Ken J. Moise Jr., M.D.</b> <i>(author of the referenced UpToDate article)</i> for inspiring an interest in HDFN/alloimmunization 
-                                            and to <b>Anthony Johnson, D.O.</b> and <b>Ramesha Papanna, M.D.</b> for their mentorship in fetal medicine 
+                                            "<i>Special thanks to <b>Dr. Kenneth J. Moise Jr., M.D.</b> <i>(author of the referenced UpToDate article)</i> for inspiring an interest in HDFN/alloimmunization 
+                                            and to <b>Dr. Anthony Johnson, D.O.</b> and <b>Dr. Ramesha Papanna, M.D.</b> for their mentorship in fetal medicine 
                                             and fetal surgery.</i>")))
                          
                 )
